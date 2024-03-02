@@ -1,0 +1,29 @@
+<h1>Editing Book</h1>
+<% if @book.errors.any? %>
+　<div class="error-messe">
+    <div class="error-message">
+      <%= pluralize(@book.errors.count, "error") %> prohibited this book from being seved:
+    </div>
+    <ul class="error-blank">
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @book do |f| %>
+  <div class="form-box">
+    <div class="form-title">Title</div>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form-box">
+    <div class="form-title">Body</div>
+    <%= f.text_area :body %>
+  </div>
+  <div class="form-toukou">
+    <%= f.submit 'Update Book' %>
+  </div>
+<% end %>
+<%= link_to "Show", book_path(@book.id) %> |
+<a href="/books">Back</a>
